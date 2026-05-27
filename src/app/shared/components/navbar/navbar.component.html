@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <a routerLink="/bubbleteas" class="navbar__brand">🧋 BubbleTea</a>
+
+  <ul class="navbar__links">
+    <li><a routerLink="/bubbleteas" routerLinkActive="active">Productos</a></li>
+    @if (authService.isAuthenticated()) {
+      <li><a routerLink="/profile" routerLinkActive="active">Perfil</a></li>
+      <li>
+        <button class="btn btn--secondary btn--sm" (click)="onLogout()">
+          Salir
+        </button>
+      </li>
+    }
+  </ul>
+</nav>

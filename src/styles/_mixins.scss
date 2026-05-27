@@ -1,0 +1,27 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == 'mobile' {
+    @media (max-width: 640px) { @content; }
+  } @else if $breakpoint == 'tablet' {
+    @media (max-width: 1024px) { @content; }
+  }
+}
+
+// DRY: mixin para estados de formulario
+@mixin form-state($color) {
+  border-color: $color;
+  &:focus { box-shadow: 0 0 0 3px rgba($color, 0.15); }
+}

@@ -1,0 +1,28 @@
+<app-navbar />
+
+<main class="detail-page">
+  @if (isLoading()) {
+    <app-loading-spinner />
+  } @else if (tea()) {
+    <div class="detail-card">
+      <div class="detail-card__emoji">🧋</div>
+      <h1 class="detail-card__name">{{ tea()!.name }}</h1>
+
+      <div class="detail-card__badges">
+        <span class="temperature-badge temperature-badge--{{ tea()!.temperature }}">
+          {{ tea()!.temperature === 'hot' ? '🔥 Caliente' : tea()!.temperature === 'cold' ? '🧊 Frío' : '✨ Ambos' }}
+        </span>
+        <span class="detail-card__status" [class.detail-card__status--active]="tea()!.active">
+          {{ tea()!.active ? 'Activo' : 'Inactivo' }}
+        </span>
+      </div>
+
+      <p class="detail-card__price">{{ tea()!.price | currency:'EUR':'symbol':'1.2-2' }}</p>
+
+      <div class="detail-card__actions">
+        <a routerLink="/bubbleteas" class="btn btn--secondary">← Volver</a>
+        <a [routerLink]="['/bubbleteas', tea()!.id, 'edit']" class="btn btn--primary">Editar</a>
+      </div>
+    </div>
+  }
+</main>

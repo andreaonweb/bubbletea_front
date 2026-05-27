@@ -1,0 +1,16 @@
+<app-navbar />
+
+<main class="profile-page">
+  <div class="profile-card">
+    <header class="profile-card__header">
+      <div class="profile-card__avatar">
+        {{ authService.currentUser()?.email?.charAt(0)?.toUpperCase() ?? '?' }}
+      </div>
+      <h1 class="profile-card__email">{{ authService.currentUser()?.email }}</h1>
+    </header>
+
+    <div class="profile-card__actions">
+      <button class="btn btn--secondary" (click)="onLogout()">Cerrar sesión</button>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,69 @@
+<app-navbar />
+
+<main class="list-page">
+  <div class="list-page__container">
+
+    <header class="list-page__header">
+      <div>
+        <h1 class="list-page__title">🧋 BubbleTeas</h1>
+        <p class="list-page__subtitle">{{ filtered().length }} productos</p>
+      </div>
+      <a routerLink="/bubbleteas/new" class="btn btn--primary">+ Nuevo</a>
+    </header>
+
+    <!-- Filtros -->
+    <div class="filters">
+      <input
+        type="search"
+        class="form-control filters__search"
+        placeholder="Buscar..."
+        [ngModel]="filter().search"
+        (ngModelChange)="setFilter({ search: $event })"
+      />
+      <select class="form-control filters__select"
+        [ngModel]="filter().temperature"
+        (ngModelChange)="setFilter({ temperature: $event })">
+        <option value="">Todas</option>
+        <option value="hot">🔥 Caliente</option>
+        <option value="cold">🧊 Frío</option>
+        <option value="both">✨ Ambos</option>
+      </select>
+      <label class="toggle-label">
+        <input type="checkbox" class="toggle-input"
+          [ngModel]="filter().activeOnly"
+          (ngModelChange)="setFilter({ activeOnly: $event })" />
+        <span class="toggle-track"></span>
+        <span>Solo activos</span>
+      </label>
+    </div>
+
+    @if (isLoading()) {
+      <app-loading-spinner />
+    } @else if (filtered().length === 0) {
+      <div class="empty-state">
+        <span>🫙</span>
+        <p>No hay BubbleTeas</p>
+      </div>
+    } @else {
+      <div class="tea-grid">
+        @for (tea of filtered(); track tea.id) {
+          <article class="tea-card">
+            <div class="tea-card__badge tea-card__badge--{{ tea.temperature }}">
+              {{ tea.temperature === 'hot' ? '🔥' : tea.temperature === 'cold' ? '🧊' : '✨' }}
+            </div>
+            <h2 class="tea-card__name">{{ tea.name }}</h2>
+            <p class="tea-card__price">{{ tea.price | currency:'EUR':'symbol':'1.2-2' }}</p>
+            <div class="tea-card__status" [class.tea-card__status--active]="tea.active">
+              {{ tea.active ? 'Activo' : 'Inactivo' }}
+            </div>
+            <div class="tea-card__actions">
+              <a [routerLink]="['/bubbleteas', tea.id]" class="btn btn--secondary btn--sm">Ver</a>
+              <a [routerLink]="['/bubbleteas', tea.id, 'edit']" class="btn btn--secondary btn--sm">Editar</a>
+              <button class="btn btn--danger btn--sm" (click)="delete(tea.id!)">Eliminar</button>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</main>

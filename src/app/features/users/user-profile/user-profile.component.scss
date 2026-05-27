@@ -1,0 +1,42 @@
+@use 'styles/variables';
+@use 'styles/mixins' as m;
+
+.profile-page {
+  @include m.flex-center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: var(--color-bg);
+}
+
+.profile-card {
+  @include m.card;
+  max-width: 420px;
+  width: 100%;
+  padding: 2.5rem;
+  text-align: center;
+
+  &__header { margin-bottom: 2rem; }
+
+  &__avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    @include m.flex-center;
+    margin: 0 auto 1rem;
+  }
+
+  &__email {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,38 @@
+// Color palette (BubbleTea themed)
+:root {
+  --color-primary:       #d4506a;   // Rosa BubbleTea
+  --color-primary-dark:  #b03055;
+  --color-primary-light: #f9d5dc;
+  --color-secondary:     #6c5ce7;   // Violeta boba
+  --color-accent:        #fdcb6e;   // Amarillo leche
+  --color-success:       #00b894;
+  --color-danger:        #e17055;
+  --color-warning:       #fdcb6e;
+
+  --color-bg:            #fdf8f8;
+  --color-bg-card:       #ffffff;
+  --color-text:          #2d3436;
+  --color-text-muted:    #636e72;
+  --color-border:        #e0d6d6;
+
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  --shadow-sm: 0 2px 8px rgba(212, 80, 106, 0.08);
+  --shadow-md: 0 4px 16px rgba(212, 80, 106, 0.12);
+
+  --font-main: 'Inter', system-ui, sans-serif;
+  --transition: 200ms ease;
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:      #1a1015;
+    --color-bg-card: #241820;
+    --color-text:    #f0e8e8;
+    --color-border:  #3d2830;
+  }
+}
