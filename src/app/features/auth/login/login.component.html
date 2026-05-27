@@ -13,9 +13,9 @@
     </header>
 
     @if (errorMessage()) {
-      <div class="alert alert--error" role="alert">
-        {{ errorMessage() }}
-      </div>
+    <div class="alert alert--error" role="alert">
+      {{ errorMessage() }}
+    </div>
     }
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
@@ -24,20 +24,14 @@
         <label for="email" class="form-label">
           Email <span aria-hidden="true">*</span>
         </label>
-        <input
-          id="email"
-          type="email"
-          class="form-control"
-          [class.form-control--error]="form.get('email')?.invalid && form.get('email')?.touched"
-          formControlName="email"
-          placeholder="tu@email.com"
-          autocomplete="email"
-        />
+        <input id="email" type="email" class="form-control"
+          [class.form-control--error]="form.get('email')?.invalid && form.get('email')?.touched" formControlName="email"
+          placeholder="tu@email.com" autocomplete="email" />
         @if (form.get('email')?.invalid && form.get('email')?.touched) {
-          <span class="form-error" role="alert">
-            @if (form.get('email')?.hasError('required')) { El email es obligatorio }
-            @else if (form.get('email')?.hasError('email')) { Introduce un email válido }
-          </span>
+        <span class="form-error" role="alert">
+          @if (form.get('email')?.hasError('required')) { El email es obligatorio }
+          @else if (form.get('email')?.hasError('email')) { Introduce un email válido }
+        </span>
         }
       </div>
 
@@ -46,42 +40,29 @@
           Contraseña <span aria-hidden="true">*</span>
         </label>
         <div class="input-wrapper">
-          <input
-            id="password"
-            [type]="showPassword() ? 'text' : 'password'"
+          <input id="password" [type]="showPassword() ? 'text' : 'password'"
             class="form-control form-control--with-icon"
             [class.form-control--error]="form.get('password')?.invalid && form.get('password')?.touched"
-            formControlName="password"
-            placeholder="Mínimo 6 caracteres"
-            autocomplete="current-password"
-          />
-          <button
-            type="button"
-            class="input-wrapper__toggle"
-            (click)="togglePassword()"
-            [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
-          >
+            formControlName="password" placeholder="Mínimo 6 caracteres" autocomplete="current-password" />
+          <button type="button" class="input-wrapper__toggle" (click)="togglePassword()"
+            [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'">
             {{ showPassword() ? '🙈' : '👁️' }}
           </button>
         </div>
         @if (form.get('password')?.invalid && form.get('password')?.touched) {
-          <span class="form-error" role="alert">
-            @if (form.get('password')?.hasError('required')) { La contraseña es obligatoria }
-            @else if (form.get('password')?.hasError('minlength')) { Mínimo 6 caracteres }
-          </span>
+        <span class="form-error" role="alert">
+          @if (form.get('password')?.hasError('required')) { La contraseña es obligatoria }
+          @else if (form.get('password')?.hasError('minlength')) { Mínimo 6 caracteres }
+        </span>
         }
       </div>
 
-      <button
-        type="submit"
-        class="btn btn--primary btn--full"
-        [disabled]="isLoading()"
-      >
+      <button type="submit" class="btn btn--primary btn--full" [disabled]="isLoading()">
         @if (isLoading()) {
-          <span class="spinner" aria-hidden="true"></span>
-          Entrando...
+        <span class="spinner" aria-hidden="true"></span>
+        Entrando...
         } @else {
-          Iniciar sesión
+        Iniciar sesión
         }
       </button>
 

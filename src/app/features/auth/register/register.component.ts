@@ -21,9 +21,9 @@ export class RegisterComponent {
   readonly showPassword = signal(false);
 
   readonly form = this.fb.group({
-    email:    ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6), CustomValidators.strongPassword()]],
-    confirm:  ['', Validators.required]
+    confirm: ['', Validators.required]
   }, { validators: this.passwordMatchValidator });
 
   private passwordMatchValidator(group: any) {

@@ -13,77 +13,60 @@
     </header>
 
     @if (errorMessage()) {
-      <div class="alert alert--error" role="alert">{{ errorMessage() }}</div>
+    <div class="alert alert--error" role="alert">{{ errorMessage() }}</div>
     }
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
       <div class="form-group">
         <label for="email" class="form-label">Email <span aria-hidden="true">*</span></label>
-        <input
-          id="email"
-          type="email"
-          class="form-control"
-          [class.form-control--error]="form.get('email')?.invalid && form.get('email')?.touched"
-          formControlName="email"
-          placeholder="tu@email.com"
-          autocomplete="email"
-        />
+        <input id="email" type="email" class="form-control"
+          [class.form-control--error]="form.get('email')?.invalid && form.get('email')?.touched" formControlName="email"
+          placeholder="tu@email.com" autocomplete="email" />
         @if (form.get('email')?.invalid && form.get('email')?.touched) {
-          <span class="form-error" role="alert">
-            @if (form.get('email')?.hasError('required')) { El email es obligatorio }
-            @else if (form.get('email')?.hasError('email')) { Introduce un email válido }
-          </span>
+        <span class="form-error" role="alert">
+          @if (form.get('email')?.hasError('required')) { El email es obligatorio }
+          @else if (form.get('email')?.hasError('email')) { Introduce un email válido }
+        </span>
         }
       </div>
 
       <div class="form-group">
         <label for="password" class="form-label">Contraseña <span aria-hidden="true">*</span></label>
         <div class="input-wrapper">
-          <input
-            id="password"
-            [type]="showPassword() ? 'text' : 'password'"
+          <input id="password" [type]="showPassword() ? 'text' : 'password'"
             class="form-control form-control--with-icon"
             [class.form-control--error]="form.get('password')?.invalid && form.get('password')?.touched"
-            formControlName="password"
-            placeholder="Mínimo 8 caracteres"
-            autocomplete="new-password"
-          />
+            formControlName="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
           <button type="button" class="input-wrapper__toggle" (click)="togglePassword()"
             [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'">
             {{ showPassword() ? '🙈' : '👁️' }}
           </button>
         </div>
         @if (form.get('password')?.invalid && form.get('password')?.touched) {
-          <span class="form-error" role="alert">
-            @if (form.get('password')?.hasError('required')) { La contraseña es obligatoria }
-            @else if (form.get('password')?.hasError('minlength')) { Mínimo 6 caracteres }
-            @else if (form.get('password')?.hasError('strongPassword')) { Debe tener mayúscula y número }
-          </span>
+        <span class="form-error" role="alert">
+          @if (form.get('password')?.hasError('required')) { La contraseña es obligatoria }
+          @else if (form.get('password')?.hasError('minlength')) { Mínimo 6 caracteres }
+          @else if (form.get('password')?.hasError('strongPassword')) { Debe tener mayúscula y número }
+        </span>
         }
       </div>
 
       <div class="form-group">
         <label for="confirm" class="form-label">Confirmar contraseña <span aria-hidden="true">*</span></label>
-        <input
-          id="confirm"
-          type="password"
-          class="form-control"
+        <input id="confirm" type="password" class="form-control"
           [class.form-control--error]="form.hasError('passwordMismatch') && form.get('confirm')?.touched"
-          formControlName="confirm"
-          placeholder="Repite la contraseña"
-          autocomplete="new-password"
-        />
+          formControlName="confirm" placeholder="Repite la contraseña" autocomplete="new-password" />
         @if (form.hasError('passwordMismatch') && form.get('confirm')?.touched) {
-          <span class="form-error" role="alert">Las contraseñas no coinciden</span>
+        <span class="form-error" role="alert">Las contraseñas no coinciden</span>
         }
       </div>
 
       <button type="submit" class="btn btn--primary btn--full" [disabled]="isLoading()">
         @if (isLoading()) {
-          <span class="spinner" aria-hidden="true"></span> Creando cuenta...
+        <span class="spinner" aria-hidden="true"></span> Creando cuenta...
         } @else {
-          Crear cuenta
+        Crear cuenta
         }
       </button>
 

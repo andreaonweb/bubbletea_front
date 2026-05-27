@@ -20,7 +20,7 @@ export class LoginComponent {
   readonly showPassword = signal(false);
 
   readonly form = this.fb.group({
-    email:    ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
@@ -43,8 +43,8 @@ export class LoginComponent {
 
   private getFirebaseError(code: string): string {
     const errors: Record<string, string> = {
-      'auth/user-not-found':  'Usuario no encontrado',
-      'auth/wrong-password':  'Contraseña incorrecta',
+      'auth/user-not-found': 'Usuario no encontrado',
+      'auth/wrong-password': 'Contraseña incorrecta',
       'auth/too-many-requests': 'Demasiados intentos. Espera un momento'
     };
     return errors[code] ?? 'Error de autenticación';
